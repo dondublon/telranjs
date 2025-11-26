@@ -3,44 +3,29 @@
 <head>
     <meta charset="utf-8">
     <style>
-        body {
-          /*  margin: 0; */
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .stage {
-            position: relative;
-            width: 500px;
-            height: 250px;
-        }
         .sq {
             position: absolute;
             width: 120px;
             height: 120px;
             border: 12px solid;
             background: transparent;
-            border-radius: 90px;
+            border-radius: 75px;
         }
 
-        /* верхний ряд */
-        .blue  { left: 0px;   top: 0px;   border-color:#0081C8; z-index:5; }
-        .black { left: 150px; top: 0px;   border-color:#000000; z-index:7; }
-        .red   { left: 300px; top: 0px;   border-color:#DF0024; z-index:9; }
-
-        /* нижний ряд */
-        .yellow{ left: 75px;  top: 80px;  border-color:#F2C500; z-index:6; }
-        .green { left: 225px; top: 80px;  border-color:#009B3A; z-index:8; }
     </style>
 </head>
-<body>
-<div class="stage">
-    <div class="sq blue"></div>
-    <div class="sq black"></div>
-    <div class="sq red"></div>
-    <div class="sq yellow"></div>
-    <div class="sq green"></div>
+<body style="height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;">
+<div style="position: relative;
+            width: 500px;
+            height: 250px;">
+    <div class="sq" style="left: 0px;   top: 0px;   border-color:#0080FF;"></div>
+    <div class="sq" style="left: 150px; top: 0px;   border-color:#000000;"></div>
+    <div class="sq" style="left: 300px; top: 0px;   border-color:#FF0000;"></div>
+    <div class="sq" style="left: 75px;  top: 75px;  border-color:#FFFF00;"></div>
+    <div class="sq" style="left: 225px; top: 75px;  border-color:#00A03A;"></div>
 </div>
 </body>
 </html>
