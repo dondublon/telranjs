@@ -1,61 +1,46 @@
 <!doctype html>
-<html lang="ru">
+<html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Перекрывающиеся квадраты — простой пример</title>
+    <meta charset="utf-8">
     <style>
-        :root{
-            --size: 120px;   /* размер квадрата */
-            --gap: 70px;     /* шаг по горизонтали между центрами */
-            --row-offset: 60px; /* вертикальное смещение второй строки */
-        }
-
         body {
-            margin: 0;
-            min-height: 100vh;
-            display: grid;
-            place-items: center;
-            background: #fff;
-            font-family: Arial, sans-serif;
+          /*  margin: 0; */
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-
         .stage {
-            width: calc(var(--size) + 3 * var(--gap));
-            height: calc(var(--size) + var(--row-offset) + 20px);
             position: relative;
+            width: 500px;
+            height: 250px;
         }
-
-        .square {
+        .sq {
             position: absolute;
-            width: var(--size);
-            height: var(--size);
-            box-sizing: border-box;
-            border: 12px solid transparent; /* "обод" квадрата */
-            border-radius: calc(var(--gap)); /* чуть округлим углы, можно убрать */
+            width: 120px;
+            height: 120px;
+            border: 12px solid;
             background: transparent;
+            border-radius: 90px;
         }
 
-        /* цвета и расположение (верхний ряд) */
-        .blue  { left: calc(0 * var(--gap));      top: 0;                    border-color: #0081C8; z-index: 5; }
-        .black { left: calc(1 * var(--gap));      top: 0;                    border-color: #000000; z-index: 7; }
-        .red   { left: calc(2 * var(--gap));      top: 0;                    border-color: #DF0024; z-index: 9; }
+        /* верхний ряд */
+        .blue  { left: 0px;   top: 0px;   border-color:#0081C8; z-index:5; }
+        .black { left: 150px; top: 0px;   border-color:#000000; z-index:7; }
+        .red   { left: 300px; top: 0px;   border-color:#DF0024; z-index:9; }
 
-        /* нижний ряд — между верхними, поэтому left = 0.5*gap, 1.5*gap */
-        .yellow{ left: calc(0.5 * var(--gap));   top: var(--row-offset);     border-color: #F2C500; z-index: 6; }
-        .green { left: calc(1.5 * var(--gap));   top: var(--row-offset);     border-color: #009B3A; z-index: 8; }
-
-        /* маленькая подсказка: измените размеры или gap, чтобы настроить перекрытие */
+        /* нижний ряд */
+        .yellow{ left: 75px;  top: 80px;  border-color:#F2C500; z-index:6; }
+        .green { left: 225px; top: 80px;  border-color:#009B3A; z-index:8; }
     </style>
 </head>
 <body>
-<div class="stage" aria-hidden="true">
-    <div class="square blue"></div>
-    <div class="square black"></div>
-    <div class="square red"></div>
-
-    <div class="square yellow"></div>
-    <div class="square green"></div>
+<div class="stage">
+    <div class="sq blue"></div>
+    <div class="sq black"></div>
+    <div class="sq red"></div>
+    <div class="sq yellow"></div>
+    <div class="sq green"></div>
 </div>
 </body>
 </html>
