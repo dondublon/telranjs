@@ -1,0 +1,31 @@
+body {
+    background-color: #F0F0F0;
+    margin: 10px;
+}
+
+.outer1 {
+    height: 200px;
+    background-color: green;
+    margin: 20px;
+    padding: 10px;
+    display: inline-block;
+}
+
+.outer2 {
+    height: 100px;
+    background-color: blue;
+    border: 2px black solid;
+}
+
+.inner1 {
+    height: 100px;
+    background-color: yellow;
+    padding: 20px;
+}
+
+
+.inner2 {
+    height: 100px;
+    background-color: pink;
+    margin-top: 20px;
+}
