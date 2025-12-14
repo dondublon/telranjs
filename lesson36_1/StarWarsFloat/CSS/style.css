@@ -50,6 +50,8 @@ nav ul {
 
 .right {
     float: right;
+    display: flex;
+    flex-direction: column;
     width: 50%;
     border: 1px solid #eedb00;
     border-radius: 0 0 16px 16px;
@@ -60,10 +62,14 @@ nav ul {
     text-align: center;
 }
 
-.right img {
-    float: left;
-    width: 33%;
-    margin: calc(1% /6);
+.pictures-block {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pictures-block img {
+    width: calc(32% );
+    margin: 3px;
 }
 
 .far-galaxy {
