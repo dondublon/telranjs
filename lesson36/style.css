@@ -1,0 +1,14 @@
+.flex-container
+{
+    width: 900px;
+    height: 400px;
+    background-color: pink;
+    display: flex;
+}
+
+.item {
+    width: 250px;
+    height: 150px;
+    background-color: aqua;
+    font-size: 9px;
+}
