@@ -1,4 +1,4 @@
-function comparator1(str1, str2) {
+export function comparator1(str1, str2) {
     if (str1.length > str2.length)
         return 1;
     else if (str1.length < str2.length)
@@ -9,7 +9,7 @@ function comparator1(str1, str2) {
         throw new Error("Something terrible happened")
 }
 
-comparator2 = (str1, str2) => {
+const comparator2 = (str1, str2) => {
     if (str1.length > str2.length)
         return 1;
     else if (str1.length < str2.length)

@@ -1,5 +1,5 @@
 function get_array_from_prompt () {
-    arr = []
+    let arr = []
     while (true) {
         let new_str = prompt("Enter a string:")
 
@@ -11,5 +11,5 @@ function get_array_from_prompt () {
     return arr
 }
 
-new_arr = get_array_from_prompt();
+let new_arr = get_array_from_prompt();
 console.log(new_arr)
