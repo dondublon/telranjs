@@ -22,5 +22,18 @@ function get_array_from_prompt () {
     return arr
 }
 
+function get_max(arr, comparator) {
+    if (arr.length === 0)
+        return undefined;
+    let tmp_max = arr[0];
+    arr.forEach((s) => {
+        if (comparator(s, tmp_max) === 1)
+            tmp_max = s;
+    })
+    return tmp_max;
+}
+
 
 let arr = get_array_from_prompt();
+let max = get_max(arr, comparator1);
+console.log(max);
