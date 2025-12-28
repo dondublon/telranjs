@@ -3,7 +3,7 @@
 //    info (функция, которая формирует строку вида:
 //    `товар: notebook lenovo thinkpad; цена: 1283 описание: cpu intel core7, ram:16gb ...`
 
-product1 = {
+let product1 = {
     name: "laptop",
     price: 29383,
     description: "Super Laptop",
@@ -11,7 +11,7 @@ product1 = {
         return `товар: ${this.name}; цена: ${this.price}; описание: ${this.description}`;
     }
 }
-product2 = {
+let product2 = {
     name: "TV",
     price: 9485,
     description: "Super TV",
@@ -36,5 +36,16 @@ function Good(name, description, price) {
     }
 }
 
-good1 = new Good("notebook", 1234, "cpu intel");
-console.log(good1.info())
+let good1 = new Good("notebook lenovo", 1234, "cpu intel");
+let good2 = new Good("notebook toshiba", 4321, "cpu AMD");
+let good3 = new Good("TV Apple", 54321, "cpu AMD");
+// console.log(good1.info())
+
+let arr = [good1, good2, good3];
+console.log('-----------------');
+writeArrGoods(arr);
+
+function writeArrGoods(arr_goods) {
+    for (let g of arr_goods)
+        console.log(g.info());
+}
