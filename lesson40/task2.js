@@ -28,3 +28,12 @@ function Account(iban, owner, balance) {
         return this.balance;
     }
 }
+
+let account1 = new Account('7832', "John Smith", 29183);
+let account2 = new Account('4886', "Mary Smith", 494);
+let account3 = new Account('9965', "Petre Jackson", 3263745);
+
+let accounts = [account1, account2, account3];
+for (let acc of accounts) {
+    console.log(acc);
+}
