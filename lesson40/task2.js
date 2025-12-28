@@ -17,7 +17,7 @@ function Account(iban, owner, balance) {
         this.balance += amount;
     }
     this.withdraw = function (amount) {
-        if (self.balance >= amount) {
+        if (this.balance >= amount) {
             this.balance -= amount;
             return true;
         } else {
@@ -29,11 +29,31 @@ function Account(iban, owner, balance) {
     }
 }
 
-let account1 = new Account('7832', "John Smith", 29183);
-let account2 = new Account('4886', "Mary Smith", 494);
-let account3 = new Account('9965', "Petre Jackson", 3263745);
+let account1 = new Account('7832', "John Smith", 100);
+let account2 = new Account('4886', "Mary Smith", 200);
+let account3 = new Account('9965', "Petre Jackson", 300);
 
 let accounts = [account1, account2, account3];
-for (let acc of accounts) {
-    console.log(acc);
+printAccounts(accounts);
+function printAccounts(arr) {
+    for (let acc of accounts) {
+        console.log(acc);
+    }
+    console.log("------------------");
 }
+
+function transfer(acc1, acc2, amount) {
+    if (acc1.withdraw(amount)) {
+        acc2.deposit(amount);
+        console.log("Transfer successful");
+    }
+    else
+        console.log("Transfer failed");
+
+}
+// success:
+transfer(account1, account2, 50);
+printAccounts(accounts);
+
+transfer(account1, account2, 60);
+printAccounts(accounts);
