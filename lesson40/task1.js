@@ -47,5 +47,12 @@ writeArrGoods(arr);
 
 function writeArrGoods(arr_goods) {
     for (let g of arr_goods)
-        console.log(g.info());
+        Object.entries(g).forEach(([key, value]) => {
+            if (typeof g[key] === "function")
+                console.log(`${key}: ${value()}`);
+            else
+                console.log(`${key}: ${value}`);
+        });
+        console.log(`--------------`);
+
 }
