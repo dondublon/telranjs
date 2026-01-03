@@ -1,40 +1,42 @@
 const t=setInterval(move,10);
-let pos=0;
-let i=1;
+pos = { x: 0,  y: 0 };
 
-function move(){
-    pos+=i;
-    if(pos>=300 || pos<=0){
-        i=-i;
+class Direction {
+    constructor() {
+        this.vectors = [
+            { x: 1,  y: 0 },  // вправо
+            { x: 0,  y: 1 },  // вниз
+            { x: -1, y: 0 },  // влево
+            { x: 0,  y: -1 }  // вверх
+        ];
+        this.index = 0;
     }
-    
-    box.style.top=pos + "px";
-    box.style.left=pos + "px";  
 
+    current() {
+        return this.vectors[this.index];
+    }
+
+    turn() {
+        this.index = (this.index + 1) % this.vectors.length;
+    }
 }
 
-//HW_41_TEXT
+direction = new Direction();
+MAX = 300;
 
-/*
-1.
-Создайте функцию, которая позволит пользователю вводить 
-строки (используйте prompt), и добавляет эти строки на HTML страницу
-Вариант чуть сложнее: добавляет в виде списка `<ol>`
-*/
+function move(){
+    curr = direction.current();
+    pos.x += curr.x;
+    pos.y += curr.y;
 
-/*
-2.
-Заставьте квадратик в анимации посещать все 
-углы по очереди
-*/
+    if ((pos.x<=0 && pos.y<=0) ||
+        (pos.x>=MAX && pos.y>=0) ||
+        (pos.x>=MAX && pos.y>=MAX) ||
+        (pos.x<=0 && pos.y>=MAX)) {
+        direction.turn();
+    }
+    
+    box.style.top=pos.x + "px";
+    box.style.left=pos.y + "px";
 
-/*
-3.Просмотрите по W3School пройденные нами темы 
-и пришлите мне вопросы оп тем аспектам которые мы не
-проходили на уроке, но которые есть в W3School
-и котрые вам кажуться важными и не очень понятными!
-
-*/
-
-
-
+}
