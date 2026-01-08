@@ -10,9 +10,15 @@ function addParagraph() {
     let str = `Name: ${inputName.value}, Sirname: ${inputSirname.value}, Email: ${inputEmail.value}`;
     const newP = document.createElement("p");
     const newPText = document.createTextNode(str);
-    newP.appendChild(newPText);
 
+    const btnDelete = document.createElement("button");
+    btnDelete.textContent = "Delete";
+    btnDelete.addEventListener("click", () => {
+        wrapper.remove();
+    });
+    newP.appendChild(newPText);
     wrapper.appendChild(newP);
+    wrapper.appendChild(btnDelete);
     document.body.appendChild(wrapper);
 
 }
