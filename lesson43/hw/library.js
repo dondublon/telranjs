@@ -1,19 +1,81 @@
-
-function findBook(library, isbn) {
-  for (let i = 0; i < library.length; i++) {
-    if (library[i].isbn === isbn) {
-      return i;
+class Library {
+    constructor() {
+        this.books = [];
     }
-  }
-  return -1;
+
+    addBook(book) {
+        if (findBook(this.books, book.isbn) === -1) {
+            this.books.push(book);
+            return true;
+        }
+        return false;
+    }
+
+    removeBook(isbn) {
+        const index = findBook(this.books, isbn);
+        if (index !== -1) {
+            this.books.splice(index, 1);
+            return true;
+        }
+        return false;
+    }
+
+    getStats() {
+        if (this.books.length === 0) {
+            return {
+                totalBooks: 0,
+                avgYear: 0,
+                minYear: 0,
+                maxYear: 0
+            };
+        }
+
+        let totalYears = 0;
+        let minYear = this.books[0].year;
+        let maxYear = this.books[0].year;
+
+        for (let i = 0; i < this.books.length; i++) {
+            const year = this.books[i].year;
+            totalYears += year;
+            if (year < minYear) {
+                minYear = year;
+            }
+            if (year > maxYear) {
+                maxYear = year;
+            }
+        }
+
+        const avgYear = totalYears / this.books.length;
+
+        return {
+            totalBooks: this.books.length,
+            avgYear: avgYear.toFixed(2),
+            minYear: minYear,
+            maxYear: maxYear
+        };
+    }
+
+    findBook(isbn) {
+        for (let i = 0; i < this.books.length; i++) {
+            if (library[i].isbn === isbn) {
+                return i;
+            }
+        }
+        return -1;
+    }
 }
 
-function Book(isbn, title, author, year) {
-  this.isbn = isbn;
-  this.title = title;
-  this.author = author;
-  this.year = +year;
-  this.toString = function () {
-    return `ISBN: ${this.isbn}; Title: ${this.title}; Author: ${this.author}; Year of publication: ${this.year};`;
-  };
+
+
+class Book {
+    constructor(isbn, title, author, year) {
+        this.isbn = isbn;
+        this.title = title;
+        this.author = author;
+        this.year = +year;
+    }
+
+    toString() {
+        return `ISBN: ${this.isbn}; Title: ${this.title}; Author: ${this.author}; Year of publication: ${this.year};`;
+    };
 }
