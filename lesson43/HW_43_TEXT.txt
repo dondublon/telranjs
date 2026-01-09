@@ -1,0 +1,3 @@
+<!-- TODO  Show library stats: avarage, min, max year of publication and
+  total book. Use standart loops for arrays. Статистика актуализируется 
+  при добавлении или удалении книги.-->
