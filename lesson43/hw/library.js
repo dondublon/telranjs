@@ -1,11 +1,15 @@
-class Library {
+class Library  extends EventTarget {
     constructor() {
+        super();
         this.books = [];
     }
 
     addBook(book) {
         if (findBook(this.books, book.isbn) === -1) {
             this.books.push(book);
+            this.dispatchEvent(
+                new CustomEvent("bookAdded", { detail: book })
+            );
             return true;
         }
         return false;
@@ -14,7 +18,10 @@ class Library {
     removeBook(isbn) {
         const index = findBook(this.books, isbn);
         if (index !== -1) {
-            this.books.splice(index, 1);
+            const removed = this.books.splice(index, 1);
+            this.dispatchEvent(
+                new CustomEvent("bookRemoved", { detail: removed })
+            );
             return true;
         }
         return false;
@@ -70,7 +77,7 @@ class Library {
 class Book {
     constructor(isbn, title, author, year) {
         this.isbn = isbn;
-        this.title = title;
+        this.title = title.to;
         this.author = author;
         this.year = +year;
     }
