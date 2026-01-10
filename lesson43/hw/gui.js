@@ -3,8 +3,12 @@ const inputIsbn = document.getElementById("inputIsbn");
 const inputTitle = document.getElementById("inputTitle");
 const inputAuthor = document.getElementById("inputAuthor");
 const inputYear = document.getElementById("inputYear");
-const lstResult = document.getElementById("lstResult");
+// const lstResult = document.getElementById("lstResult");
 const btnBook = document.getElementById("addBook");
+outTotalBooks = document.getElementById("totalBooks");
+outAvgYear = document.getElementById("avgYear");
+outMaxYear = document.getElementById("minYear");
+outMinYear = document.getElementById("maxYear");
 
 btnBook.onclick = addBook;
 library.addEventListener("bookAdded", onBookAdded);
@@ -49,6 +53,9 @@ function createButtonDel(obj_to_remove){
 
 function updateStats() {
     const stats = library.getStats();
-    document.getElementById("totalBooks").textContent = stats.totalBooks;
-    document.getElementById("avgYear").textContent = stats.avgYear
+    outTotalBooks.textContent = stats.totalBooks;
+    outAvgYear.textContent = stats.avgYear;
+    outMinYear.textContent = stats.minYear;
+    outMaxYear.textContent = stats.maxYear;
+
 }

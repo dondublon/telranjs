@@ -5,7 +5,7 @@ class Library  extends EventTarget {
     }
 
     add(book) {
-        if (this.findBook(this.books, book.isbn) === -1) {
+        if (this.findBook(book.isbn) === -1) {
             this.books.push(book);
             this.dispatchEvent(
                 new CustomEvent("bookAdded", { detail: book })
@@ -16,7 +16,7 @@ class Library  extends EventTarget {
     }
 
     removeBook(isbn) {
-        const index = this.findBook(this.books, isbn);
+        const index = this.findBook(isbn);
         if (index !== -1) {
             const removed = this.books.splice(index, 1);
             this.dispatchEvent(
