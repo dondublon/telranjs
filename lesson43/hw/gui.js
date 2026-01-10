@@ -8,14 +8,16 @@ const btnBook = document.getElementById("addBook");
 
 btnBook.onclick = addBook;
 library.addEventListener("bookAdded", onBookAdded);
+library.addEventListener("bookRemoved", updateStats);
 
 
 function addBook() {
   if (library.findBook(inputIsbn.value) === -1) {
       const book = new Book(inputIsbn.value, inputTitle.value, inputAuthor.value, parseInt(inputYear.value));
       library.add(book);
+      updateStats();
   } else {
-    alert(`Book with isbn = ${isbn.value} exist`);
+    alert(`Book with isbn = ${inputIsbn.value} exist`);
   }
 }
 
@@ -43,4 +45,10 @@ function createButtonDel(obj_to_remove){
     buttonDelete.style.color = 'red';
     buttonDelete.style.marginLeft='5px';
     return buttonDelete;
+}
+
+function updateStats() {
+    const stats = library.getStats();
+    document.getElementById("totalBooks").textContent = stats.totalBooks;
+    document.getElementById("avgYear").textContent = stats.avgYear
 }
