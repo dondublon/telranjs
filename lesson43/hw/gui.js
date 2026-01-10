@@ -1,26 +1,45 @@
-const library = [];
-const isbn = document.getElementById("isbn");
-const title = document.getElementById("title");
-const author = document.getElementById("author");
-const year = document.getElementById("year");
-const result = document.getElementById("result");
-const addBook = document.getElementById("addBook");
+const library = new Library();
+const inputIsbn = document.getElementById("inputIsbn");
+const inputTitle = document.getElementById("inputTitle");
+const inputAuthor = document.getElementById("inputAuthor");
+const inputYear = document.getElementById("inputYear");
+const lstResult = document.getElementById("lstResult");
+const btnBook = document.getElementById("addBook");
 
-addBook.onclick = function () {
-  if (findBook(library, isbn.value) === -1) {
-    const book = new Book(isbn.value, title.value, author.value, year.value);
-    library.push(book);
-    const li = document.createElement("li");
-    const buttonDel = createButtonDel();
-    buttonDel.addEventListener("click", function (e) {
-      const index = findBook(library, book.isbn);
-      library.splice(index, 1);
-    });
-    li.append(book.toString(), buttonDel);
-    result.appendChild(li);
+btnBook.onclick = addBook;
+library.addEventListener("bookAdded", onBookAdded);
+
+
+function addBook() {
+  if (library.findBook(inputIsbn.value) === -1) {
+      const book = new Book(inputIsbn.value, inputTitle.value, inputAuthor.value, parseInt(inputYear.value));
+      library.add(book);
   } else {
     alert(`Book with isbn = ${isbn.value} exist`);
   }
-  isbn.value = title.value = author.value = year.value = "";
-};
+}
 
+function onBookAdded(book) {
+    const li = document.createElement("li");
+    const buttonDel = createButtonDel(li);
+    buttonDel.addEventListener("click", function (e) {
+         library.removeBook(book.isbn);
+    });
+    li.append(book.toString(), buttonDel);
+    result.appendChild(li);
+
+    inputIsbn.value = inputTitle.value = inputAuthor.value = inputYear.value = "";
+}
+
+function createButtonDel(obj_to_remove){
+    const buttonDelete=document.createElement('button');
+    buttonDelete.append('Delete');
+    buttonDelete.addEventListener('click', function (e) {
+            obj_to_remove.remove();
+        }
+    );
+    // buttonDelete.classList.add('delete');
+    buttonDelete.style.color = 'red';
+    buttonDelete.style.marginLeft='5px';
+    return buttonDelete;
+}

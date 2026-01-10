@@ -4,30 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
-    <script src="utils.js" defer></script>
     <script src="library.js" defer></script>
     <script src="gui.js" defer></script>
 </head>
 <body>
     <div>
     <label>ISBN:
-        <input type="text" id="isbn">
+        <input type="text" id="inputIsbn">
     </label>
     <label>Title:
-        <input type="text" id="title">
+        <input type="text" id="inputTitle">
     </label>
     <label>Author:
-        <input type="text" id="author">
+        <input type="text" id="inputAuthor">
     </label>
     <label>Year of publication:
-        <input type="number" id="year">
+        <input type="number" id="inputYear">
     </label>
     <button id="addBook">Add book</button>
 </div>
 <h1>List of books</h1>
 <ol id="result"></ol>
-<!-- TODO  Show library stats: avarage, min, max year of publication and
-  total book. Use standart loops for arrays. Статистика актуализируется 
+<!-- TODO  Show library stats: average, min, max year of publication and
+  total book. Use standard loops for arrays. Статистика актуализируется
   при добавлении или удалении книги.-->
 <div id="stats">
     <h2>Stats</h2>
