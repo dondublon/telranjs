@@ -29,7 +29,7 @@ function onBookAdded(event) {
     const book = event.detail;
     const li = document.createElement("li");
     const buttonDel = createButtonDel(li);
-    buttonDel.addEventListener("click", function (e) {
+    buttonDel.addEventListener("click", function () {
          library.removeBook(book.isbn);
     });
     li.append(book.toString(), buttonDel);
@@ -41,7 +41,7 @@ function onBookAdded(event) {
 function createButtonDel(obj_to_remove){
     const buttonDelete=document.createElement('button');
     buttonDelete.append('Delete');
-    buttonDelete.addEventListener('click', function (e) {
+    buttonDelete.addEventListener('click', function () {
             obj_to_remove.remove();
         }
     );
