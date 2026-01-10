@@ -19,7 +19,8 @@ function addBook() {
   }
 }
 
-function onBookAdded(book) {
+function onBookAdded(event) {
+    const book = event.detail;
     const li = document.createElement("li");
     const buttonDel = createButtonDel(li);
     buttonDel.addEventListener("click", function (e) {
