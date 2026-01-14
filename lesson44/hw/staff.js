@@ -63,13 +63,13 @@ class Staff extends EventTarget {
     }
 
     find(id) {
-        for (let i = 0; i < this.persons.length; i++) {
-            if (this.persons[i].id === id) {
-                return i;
-            }
+        let index = this.persons.findIndex(e => e.id === id);
+        console.log(`found index ${index}, id=${id}`)
+        if (index !== -1) {
+            return this.persons[index];
+        } else {
+            return -1;
         }
-
-        return -1;
     }
 }
 
