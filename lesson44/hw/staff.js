@@ -40,6 +40,7 @@ class Staff extends EventTarget {
         }
 
         const now = new Date();
+        /** @type {number[]} */
         let ages = this.persons.map(p => (now-p.birthDate)/MS_PER_YEAR);
         let minAge = ages.reduce((min, a) =>Math.min(min, a), Infinity);
         let maxAge = ages.reduce((min, a) =>Math.max(min, a), -Infinity);
