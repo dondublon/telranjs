@@ -1,4 +1,4 @@
-const library = new Library();
+const library = new Staff();
 const inputIsbn = document.getElementById("inputIsbn");
 const inputTitle = document.getElementById("inputTitle");
 const inputAuthor = document.getElementById("inputAuthor");
