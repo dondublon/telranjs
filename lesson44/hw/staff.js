@@ -5,7 +5,7 @@ class Staff extends EventTarget {
     }
 
     add(person) {
-        if (this.findBook(person.id) === -1) {
+        if (this.find(person.id) === -1) {
             this.persons.push(person);
             this.dispatchEvent(
                 new CustomEvent("personAdded", { detail: person })
@@ -56,9 +56,9 @@ class Staff extends EventTarget {
 
         return {
             totalPersons: this.persons.length,
-            avgPersons: avgYear.toFixed(2),
-            minPersons: minYear,
-            maxPersons: maxYear
+            avgAge: avgYear.toFixed(2),
+            minAge: minYear,
+            maxAge: maxYear
         };
     }
 
@@ -75,7 +75,7 @@ class Staff extends EventTarget {
 
 
 
-class Book {
+class Person {
     constructor(id, firstName, lastName, birthDate) {
         this.id = id;
         this.firstName = firstName;

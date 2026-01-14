@@ -1,41 +1,41 @@
-const library = new Staff();
-const inputIsbn = document.getElementById("inputIsbn");
-const inputTitle = document.getElementById("inputTitle");
-const inputAuthor = document.getElementById("inputAuthor");
-const inputYear = document.getElementById("inputYear");
+const staff = new Staff();
+const inputId = document.getElementById("inputId");
+const inputFirstName = document.getElementById("inputFirstName");
+const inputLastName = document.getElementById("inputLastName");
+const inputBirthDate = document.getElementById("inputBirthDate");
 // const lstResult = document.getElementById("lstResult");
-const btnBook = document.getElementById("addBook");
-outTotalBooks = document.getElementById("totalBooks");
-outAvgYear = document.getElementById("avgYear");
-outMaxYear = document.getElementById("minYear");
-outMinYear = document.getElementById("maxYear");
+const btnAdd = document.getElementById("addPerson");
+outTotalPersons = document.getElementById("totalPersons");
+outAvgAge = document.getElementById("avgAge");
+outMaxAge = document.getElementById("minAge");
+outMinAge = document.getElementById("maxAge");
 
-btnBook.onclick = addBook;
-library.addEventListener("bookAdded", onBookAdded);
-library.addEventListener("bookRemoved", updateStats);
+btnAdd.onclick = addPerson;
+staff.addEventListener("personAdded", onPersonAdded);
+staff.addEventListener("personRemoved", updateStats);
 
 
-function addBook() {
-  if (library.findBook(inputIsbn.value) === -1) {
-      const book = new Book(inputIsbn.value, inputTitle.value, inputAuthor.value, parseInt(inputYear.value));
-      library.add(book);
+function addPerson() {
+  if (staff.find(inputId.value) === -1) {
+      const person = new Person(inputId.value, inputFirstName.value, inputLastName.value, inputBirthDate.value);
+      staff.add(person);
       updateStats();
   } else {
-    alert(`Book with isbn = ${inputIsbn.value} exist`);
+    alert(`Person with id = ${inputId.value} exist`);
   }
 }
 
-function onBookAdded(event) {
-    const book = event.detail;
+function onPersonAdded(event) {
+    const person = event.detail;
     const li = document.createElement("li");
     const buttonDel = createButtonDel(li);
     buttonDel.addEventListener("click", function () {
-         library.removeBook(book.isbn);
+         library.remove(person.id);
     });
-    li.append(book.toString(), buttonDel);
+    li.append(person.toString(), buttonDel);
     result.appendChild(li);
 
-    inputIsbn.value = inputTitle.value = inputAuthor.value = inputYear.value = "";
+    inputId.value = inputFirstName.value = inputLastName.value = inputBirthDate.value = "";
 }
 
 function createButtonDel(obj_to_remove){
@@ -52,10 +52,12 @@ function createButtonDel(obj_to_remove){
 }
 
 function updateStats() {
-    const stats = library.getStats();
-    outTotalBooks.textContent = stats.totalBooks;
-    outAvgYear.textContent = stats.avgYear;
-    outMinYear.textContent = stats.minYear;
-    outMaxYear.textContent = stats.maxYear;
+    console.log('updateStats');
+    const stats = staff.getStats();
+    console.log(stats);
+    outTotalPersons.textContent = stats.totalPersons;
+    outAvgAge.textContent = stats.avgAge;
+    outMinAge.textContent = stats.minAge;
+    outMaxAge.textContent = stats.maxAge;
 
 }
