@@ -52,9 +52,7 @@ function createButtonDel(obj_to_remove){
 }
 
 function updateStats() {
-    console.log('updateStats');
     const stats = staff.getStats();
-    console.log(stats);
     outTotalPersons.textContent = stats.totalPersons;
     outAvgAge.textContent = stats.avgAge;
     outMinAge.textContent = stats.minAge;
