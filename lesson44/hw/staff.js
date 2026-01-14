@@ -1,3 +1,5 @@
+const MS_PER_YEAR = 1000 * 60 * 60 * 24 * 365.25;
+
 class Staff extends EventTarget {
     constructor() {
         super();
@@ -37,28 +39,19 @@ class Staff extends EventTarget {
             };
         }
 
-        let totalYears = 0;
-        let minYear = this.persons[0].year;
-        let maxYear = this.persons[0].year;
+        const now = new Date();
+        let ages = this.persons.map(p => (now-p.birthDate)/MS_PER_YEAR);
+        let minAge = ages.reduce((min, a) =>Math.min(min, a), Infinity);
+        let maxAge = ages.reduce((min, a) =>Math.max(min, a), -Infinity);
+        let totalAge = ages.reduce((acc, a) => acc + a, 0);
 
-        for (let i = 0; i < this.persons.length; i++) {
-            const year = this.persons[i].year;
-            totalYears += year;
-            if (year < minYear) {
-                minYear = year;
-            }
-            if (year > maxYear) {
-                maxYear = year;
-            }
-        }
-
-        const avgYear = totalYears / this.persons.length;
+        const avgAge = totalAge / this.persons.length;
 
         return {
             totalPersons: this.persons.length,
-            avgAge: avgYear.toFixed(2),
-            minAge: minYear,
-            maxAge: maxYear
+            avgAge: avgAge.toFixed(2),
+            minAge: minAge.toFixed(2),
+            maxAge: maxAge.toFixed(2)
         };
     }
 
@@ -80,7 +73,7 @@ class Person {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.birthDate = birthDate;
+        this.birthDate = new Date(birthDate);
     }
 
     toString() {
