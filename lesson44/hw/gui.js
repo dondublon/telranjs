@@ -30,7 +30,7 @@ function onPersonAdded(event) {
     const li = document.createElement("li");
     const buttonDel = createButtonDel(li);
     buttonDel.addEventListener("click", function () {
-         library.remove(person.id);
+         staff.remove(person.id);
     });
     li.append(person.toString(), buttonDel);
     result.appendChild(li);

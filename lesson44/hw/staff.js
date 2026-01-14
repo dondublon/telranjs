@@ -22,7 +22,7 @@ class Staff extends EventTarget {
         if (index !== -1) {
             const removed = this.persons.splice(index, 1);
             this.dispatchEvent(
-                new CustomEvent("bookRemoved", { detail: removed })
+                new CustomEvent("personRemoved", { detail: removed })
             );
             return true;
         }
@@ -59,7 +59,7 @@ class Staff extends EventTarget {
         let index = this.persons.findIndex(e => e.id === id);
         console.log(`found index ${index}, id=${id}`)
         if (index !== -1) {
-            return this.persons[index];
+            return index;
         } else {
             return -1;
         }
