@@ -41,9 +41,9 @@ class Staff extends EventTarget {
 
         const now = new Date();
         /** @type {number[]} */
-        let ages = this.persons.map(p => (now-p.birthDate)/MS_PER_YEAR);
-        let minAge = ages.reduce((min, a) =>Math.min(min, a), Infinity);
-        let maxAge = ages.reduce((min, a) =>Math.max(min, a), -Infinity);
+        let ages = this.persons.map(p => p.age());
+        let minAge = Math.min(...ages);
+        let maxAge = Math.max(...ages);
         let totalAge = ages.reduce((acc, a) => acc + a, 0);
 
         const avgAge = totalAge / this.persons.length;
@@ -80,4 +80,9 @@ class Person {
     toString() {
         return `id: ${this.id}; First Name: ${this.firstName}; Last Name: ${this.lastName}; Birth Date: ${this.birthDate};`;
     };
+}
+
+Person.prototype.age = function () {
+    const now = new Date();
+    return (now - this.birthDate) / MS_PER_YEAR;
 }
