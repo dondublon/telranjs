@@ -3,12 +3,12 @@ const MS_PER_YEAR = 1000 * 60 * 60 * 24 * 365.25;
 class Staff extends EventTarget {
     constructor() {
         super();
-        this.employees = [];
+        this._employees = [];
     }
 
     add(person) {
         if (this.find(person.id) === -1) {
-            this.employees.push(person);
+            this._employees.push(person);
             this.dispatchEvent(
                 new CustomEvent("personAdded", { detail: person })
             );
@@ -20,7 +20,7 @@ class Staff extends EventTarget {
     remove(id) {
         const index = this.find(id);
         if (index !== -1) {
-            const removed = this.employees.splice(index, 1);
+            const removed = this._employees.splice(index, 1);
             this.dispatchEvent(
                 new CustomEvent("personRemoved", { detail: removed })
             );
@@ -30,7 +30,7 @@ class Staff extends EventTarget {
     }
 
     getStats() {
-        if (this.employees.length === 0) {
+        if (this._employees.length === 0) {
             return {
                 totalPersons: 0,
                 avgAge: 0,
@@ -41,15 +41,15 @@ class Staff extends EventTarget {
 
         const now = new Date();
         /** @type {number[]} */
-        let ages = this.employees.map(p => p.age());
+        let ages = this._employees.map(p => p.age());
         let minAge = Math.min(...ages);
         let maxAge = Math.max(...ages);
         let totalAge = ages.reduce((acc, a) => acc + a, 0);
 
-        const avgAge = totalAge / this.employees.length;
+        const avgAge = totalAge / this._employees.length;
 
         return {
-            totalPersons: this.employees.length,
+            totalPersons: this._employees.length,
             avgAge: avgAge.toFixed(2),
             minAge: minAge.toFixed(2),
             maxAge: maxAge.toFixed(2)
@@ -57,7 +57,7 @@ class Staff extends EventTarget {
     }
 
     find(id) {
-        let index = this.employees.findIndex(e => e.id === id);
+        let index = this._employees.findIndex(e => e.id === id);
         console.log(`found index ${index}, id=${id}`)
         if (index !== -1) {
             return index;

@@ -18,9 +18,10 @@ staff.addEventListener("employeeRemoved", updateStats);
 
 function addEmployee() {
   if (staff.find(inputId.value) === -1) {
-      const person = new Employee(inputId.value, inputFirstName.value, inputLastName.value,
+      const employee_data = new EmployeeData(inputId.value, inputFirstName.value, inputLastName.value,
           inputBirthDate.value, inputSalary.value);
-      staff.add(person);
+      const employee = new Employee(employee_data);
+      staff.add(employee);
       updateStats();
   } else {
     alert(`Employee with id = ${inputId.value} exist`);
@@ -40,7 +41,7 @@ function onEmployeeAdded(event) {
     li.append(employee.toString(), buttonDel);
     result.appendChild(li);
 
-    inputId.value = inputFirstName.value = inputLastName.value = inputBirthDate.value = "";
+    inputId.value = inputFirstName.value = inputLastName.value = inputBirthDate.value = inputSalary.value = "";
 }
 
 function createButtonDel(obj_to_remove){
@@ -63,5 +64,6 @@ function updateStats() {
     outAvgAge.textContent = stats.avgAge;
     outMinAge.textContent = stats.minAge;
     outMaxAge.textContent = stats.maxAge;
-
+    // temporary, to check 'employees' getter:
+    console.log("staff.employees", staff.employees);
 }
