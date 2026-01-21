@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company</title>
+    <script src="company.js" defer></script>
+    <script src="gui.js" defer></script>
+</head>
+<body>
+    <div>
+    <label>ID:
+        <input type="text" id="inputId">
+    </label>
+    <label>First Name:
+        <input type="text" id="inputFirstName">
+    </label>
+    <label>Last Name:
+        <input type="text" id="inputLastName">
+    </label>
+    <label>Birth Date:
+        <input type="date" id="inputBirthDate">
+    </label>
+    <button id="addPerson">Add Person</button>
+</div>
+<h1>List of persons</h1>
+<ol id="result"></ol>
+<!-- Task: Show library stats: average, min, max year of publication and
+  total book. Use standard loops for arrays. Статистика актуализируется
+  при добавлении или удалении книги.-->
+<div id="stats">
+    <h2>Stats</h2>
+    <table>
+        <tr>
+            <td>Total persons</td><td id="totalPersons"></td>
+        </tr>
+        <tr>
+            <td>Average age</td><td id="avgAge"></td>
+        </tr>
+        <tr>
+            <td>Min age</td><td id="minAge"></td>
+        </tr>
+        <tr>
+            <td>Max age</td><td id="maxAge"></td>
+        </tr>
+    </table>
+</div>
+    
+</body>
+</html>
