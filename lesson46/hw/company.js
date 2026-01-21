@@ -3,14 +3,14 @@ const MS_PER_YEAR = 1000 * 60 * 60 * 24 * 365.25;
 class Company extends EventTarget {
     constructor() {
         super();
-        this.persons = [];
+        this.employees = [];
     }
 
-    add(person) {
-        if (this.find(person.id) === -1) {
-            this.persons.push(person);
+    add(employee) {
+        if (this.find(employee.id) === -1) {
+            this.employees.push(employee);
             this.dispatchEvent(
-                new CustomEvent("personAdded", { detail: person })
+                new CustomEvent("employeeAdded", { detail: employee })
             );
             return true;
         }
@@ -20,9 +20,9 @@ class Company extends EventTarget {
     remove(id) {
         const index = this.find(id);
         if (index !== -1) {
-            const removed = this.persons.splice(index, 1);
+            const removed = this.employees.splice(index, 1);
             this.dispatchEvent(
-                new CustomEvent("personRemoved", { detail: removed })
+                new CustomEvent("employeeRemoved", { detail: removed })
             );
             return true;
         }
@@ -30,7 +30,7 @@ class Company extends EventTarget {
     }
 
     getStats() {
-        if (this.persons.length === 0) {
+        if (this.employees.length === 0) {
             return {
                 totalPersons: 0,
                 avgAge: 0,
@@ -41,15 +41,15 @@ class Company extends EventTarget {
 
         const now = new Date();
         /** @type {number[]} */
-        let ages = this.persons.map(p => p.age());
+        let ages = this.employees.map(p => p.age);
         let minAge = Math.min(...ages);
         let maxAge = Math.max(...ages);
         let totalAge = ages.reduce((acc, a) => acc + a, 0);
 
-        const avgAge = totalAge / this.persons.length;
+        const avgAge = totalAge / this.employees.length;
 
         return {
-            totalPersons: this.persons.length,
+            totalPersons: this.employees.length,
             avgAge: avgAge.toFixed(2),
             minAge: minAge.toFixed(2),
             maxAge: maxAge.toFixed(2)
@@ -57,7 +57,7 @@ class Company extends EventTarget {
     }
 
     find(id) {
-        let index = this.persons.findIndex(e => e.id === id);
+        let index = this.employees.findIndex(e => e.id === id);
         console.log(`found index ${index}, id=${id}`)
         if (index !== -1) {
             return index;
@@ -70,19 +70,74 @@ class Company extends EventTarget {
 
 
 class Person {
-    constructor(id, firstName, lastName, birthDate) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthDate = new Date(birthDate);
+    constructor(id,firstName,lastName,birthdate){
+        this._id=id;
+        this._firstName=firstName;
+        this._lastName=lastName;
+        this._birthdate = new Date(birthdate);
     }
 
+    get id() {
+        return this._id;
+    }
+
+    set id(value) {
+        this._id = value;
+    }
+
+    get firstName() {
+        return this._firstName;
+    }
+
+    set firstName(value) {
+        this._firstName = value;
+    }
+
+    get lastName() {
+        return this._lastName;
+    }
+
+    set lastName(value) {
+        this._lastName = value;
+    }
+
+    get birthDate() {
+        return this._birthDate;
+    }
+
+    set birthDate(value) {
+        this._birthDate = value;
+    }
+
+    get age() {
+        const ageDiffMs = (new Date()) - this._birthdate;
+        const ageDate = new Date(ageDiffMs);
+        return ageDate.getUTCFullYear() - 1970;
+
+    }
+
+    fullName = function(){
+        return `${this._firstName} ${this._lastName}`;
+    }
     toString() {
         return `id: ${this.id}; First Name: ${this.firstName}; Last Name: ${this.lastName}; Birth Date: ${this.birthDate};`;
     };
 }
 
-Person.prototype.age = function () {
-    const now = new Date();
-    return (now - this.birthDate) / MS_PER_YEAR;
+class Employee extends Person {
+    constructor(id,firstName,lastName,birthdate,salary ){
+        super(id,firstName,lastName,birthdate);
+        this._salary = +salary;
+    }
+
+    get salary(){
+        return this._salary;
+    }
+
+    set salary (value){
+        if(value>this._salary){
+            this._salary=value;
+        }
+    }
 }
+

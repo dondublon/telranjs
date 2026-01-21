@@ -3,39 +3,41 @@ const inputId = document.getElementById("inputId");
 const inputFirstName = document.getElementById("inputFirstName");
 const inputLastName = document.getElementById("inputLastName");
 const inputBirthDate = document.getElementById("inputBirthDate");
+const inputSalary = document.getElementById("inputSalary");
 // const lstResult = document.getElementById("lstResult");
-const btnAdd = document.getElementById("addPerson");
+const btnAdd = document.getElementById("addEmployee");
 outTotalPersons = document.getElementById("totalPersons");
 outAvgAge = document.getElementById("avgAge");
 outMaxAge = document.getElementById("minAge");
 outMinAge = document.getElementById("maxAge");
 
-btnAdd.onclick = addPerson;
-staff.addEventListener("personAdded", onPersonAdded);
-staff.addEventListener("personRemoved", updateStats);
+btnAdd.onclick = addEmployee;
+staff.addEventListener("employeeAdded", onEmployeeAdded);
+staff.addEventListener("employeeRemoved", updateStats);
 
 
-function addPerson() {
+function addEmployee() {
   if (staff.find(inputId.value) === -1) {
-      const person = new Person(inputId.value, inputFirstName.value, inputLastName.value, inputBirthDate.value);
+      const person = new Employee(inputId.value, inputFirstName.value, inputLastName.value,
+          inputBirthDate.value, inputSalary.value);
       staff.add(person);
       updateStats();
   } else {
-    alert(`Person with id = ${inputId.value} exist`);
+    alert(`Employee with id = ${inputId.value} exist`);
   }
 }
 
-function onPersonAdded(event) {
-    const person = event.detail;
+function onEmployeeAdded(event) {
+    const employee = event.detail;
     const li = document.createElement("li");
     // Внутри createButtonDel - замыкание, сохраняем li.
     const buttonDel = createButtonDel(li);
-    const person_id = person.id
+    const person_id = employee.id
     // Это замыкание, сохраняем person_id.
     buttonDel.addEventListener("click", function () {
          staff.remove(person_id);
     });
-    li.append(person.toString(), buttonDel);
+    li.append(employee.toString(), buttonDel);
     result.appendChild(li);
 
     inputId.value = inputFirstName.value = inputLastName.value = inputBirthDate.value = "";
