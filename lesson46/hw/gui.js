@@ -28,9 +28,12 @@ function addPerson() {
 function onPersonAdded(event) {
     const person = event.detail;
     const li = document.createElement("li");
+    // Внутри createButtonDel - замыкание, сохраняем li.
     const buttonDel = createButtonDel(li);
+    const person_id = person.id
+    // Это замыкание, сохраняем person_id.
     buttonDel.addEventListener("click", function () {
-         staff.remove(person.id);
+         staff.remove(person_id);
     });
     li.append(person.toString(), buttonDel);
     result.appendChild(li);
@@ -41,6 +44,7 @@ function onPersonAdded(event) {
 function createButtonDel(obj_to_remove){
     const buttonDelete=document.createElement('button');
     buttonDelete.append('Delete');
+    // Это замыкание, сохраняем obj_to_remove, который в нашем случае равен li.
     buttonDelete.addEventListener('click', function () {
             obj_to_remove.remove();
         }
