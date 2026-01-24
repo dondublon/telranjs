@@ -26,9 +26,15 @@ console.log("===Context Loss");
 
 const fn=peter.infoFunc;
 console.log(fn);
-fn();
-func(peter.infoArrow);//Peter
-func(peter.infoFunc);//ERROR
+// fn();
+// invoke_log("peter.infoArrow", peter.infoArrow);//Peter
+
+invoke_log("peter.infoFunc", peter.infoFunc);//ERROR
 
 
+function invoke_log(message, callback){
+    console.log(message);
+    console.log(callback);
+    callback();
+}
 
