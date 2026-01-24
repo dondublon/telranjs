@@ -28,8 +28,18 @@ const fn=peter.infoFunc;
 console.log(fn);
 // fn();
 // invoke_log("peter.infoArrow", peter.infoArrow);//Peter
+// invoke_log("peter.infoFunc simple", peter.infoFunc);//ERROR
 
-invoke_log("peter.infoFunc", peter.infoFunc);//ERROR
+// Способ 1: Используем .bind(), она работает так:
+//  .bind(context, arg1, ...). 1-й аргумент попадает в this.
+ invoke_log("peter.infoFunc with bind", peter.infoFunc.bind(peter));
+
+// Способ 2: Использование функции-обертки, стрелочной
+// работает два момента:
+// 1. Стрелочная функция 2 видит переменную peter из своего контекста.
+// 2. Внутри мы вызывает infoFunc() у объекта peter, и он существует, это важно.
+//    Поэтому попадает в this.
+invoke_log("peter.infoFunc (wrapper)", () => peter.infoFunc());
 
 
 function invoke_log(message, callback){
@@ -37,4 +47,3 @@ function invoke_log(message, callback){
     console.log(callback);
     callback();
 }
-
