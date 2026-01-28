@@ -1,10 +1,10 @@
 // for (var i=0; i<10; i++){
-//     setTimeout(()=>console.log(i),1000)
+//    setTimeout(()=>console.log(i),1000)
 // }
 
-for (let i=0; i<10; i++){
-    setTimeout(()=>console.log(i),1000)
-}
+ for (let i=0; i<10; i++){
+     setTimeout(()=>console.log(i),1000)
+ }
 
 //1. Понять почему при варианте 1 вывелось 10 раз число 10
 //2. Объяснить почему для летов получилось правильно 1.2.3...10
