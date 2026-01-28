@@ -17,7 +17,7 @@
 console.log("=== Way 1 === ");
 function get_print_func(k) {
     return function() {
-        console.log(k);
+        console.log("way1: "+k);
     };
 }
 for (var i=0; i<10; i++){
@@ -29,12 +29,27 @@ console.log("=== Way 2 === ");
 // просто переносим setTimeout во внутреннюю функцию.
 // идея та же, с замыканием.
 function schedulePrint(k) {
-    setTimeout(() => console.log(k),100);
+    setTimeout(() => console.log("way2:" + k),100);
 }
 for (var i=0; i<10; i++){
     schedulePrint(i);
 
 }
 
+console.log("=== Way 3 === ");
+// "А что, так можно было?" :)
+// Под условие подходит.
+for (var i=0; i<10; i++){
+    console.log("way3: "+ i);
+}
+
+console.log("=== Way 4 === ");
+promise = new Promise((resolve, reject) => resolve(0));
+for (var i=0; i<10; i++){
+    promise = promise.then((k)=> {
+        console.log("way 4:" + k);
+        return k+1;
+    });
+}
 
 
