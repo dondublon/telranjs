@@ -1,7 +1,5 @@
-// const base_url = 'https://api.apilayer.com/fixer';
 const base_url = 'https://api.apilayer.com/fixer';
-// const API_KEY = 'eHjLoJ7Hn6iEy9EKktlKACDKs1ebTxhQ';
-const API_KEY = 'e5afd573b21b345d674b8815a6b554b3';
+const API_KEY = 'eHjLoJ7Hn6iEy9EKktlKACDKs1ebTxhQ';
 
 calculate.onclick = function () {
     const currencyFrom = from.value.trim();
@@ -11,10 +9,7 @@ calculate.onclick = function () {
             apikey: API_KEY
         }
     })
-    .then(response => {
-        let json_obj = response.json();
-        console.log("got json\n", json_obj);
-    })
+    .then(response => response.json())
     .then(data => data.result)
     .then(res => {
         if(isNaN(res)){
