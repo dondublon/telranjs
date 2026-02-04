@@ -44,12 +44,12 @@ window.onload = function () {
 };
 
 calculate.onclick = function () {
-
     const currencyFrom = from.value.trim();
     const currencyTo = to.value.trim();
-    fetch(`${base_url}/convert?amount=${sum.value}&from=${currencyFrom}&to=${currencyTo}`, {
+    console.log(std_headers);
+    fetch(`${base_url}/convert?amount=${sum.value}&from=${currencyFrom}&to=${currencyTo}`,
         std_headers
-    })
+    )
     .then(response => response.json())
     .then(data => data.result)
     .then(res => {
